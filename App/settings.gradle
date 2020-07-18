@@ -1,0 +1,2 @@
+rootProject.name='WatchMonitoringApp'
+include ':app'

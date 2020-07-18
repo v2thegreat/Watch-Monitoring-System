@@ -1,0 +1,3 @@
+<resources>
+    <string name="serverCountString">Servers Connected: {n}</string>
+</resources>

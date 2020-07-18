@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/serverCount"
+        android:layout_width="126dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="163dp"
+        android:gravity="center"
+        android:text="@string/serverCountString"
+        android:textColor="@color/ambient_mode_text"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/toastButton"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/serverCount"
+        android:layout_alignEnd="@+id/serverCount"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="12dp"
+        android:text="add progress"
+        android:textSize="12sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="82dp"
+        android:scaleX="2"
+        android:scaleY="2" />
+
+
+</RelativeLayout>
