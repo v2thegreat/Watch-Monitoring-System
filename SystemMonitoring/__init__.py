@@ -1,6 +1,7 @@
 import platform
 from datetime import datetime
 from typing import Dict
+import json
 
 import psutil
 from tabulate import tabulate
@@ -29,6 +30,12 @@ class _ThermalInformation:
     @classmethod
     def get_current_sensors_temperatures(cls):
         return psutil.sensors_temperatures(fahrenheit=False)
+
+    def get_system_information(self):
+        return {
+            'fanSpeed': self.get_current_fan_speed(),
+            'temperature': self.get_current_sensors_temperatures()
+        }
 
     def __repr__(self):
         return tabulate([
@@ -79,6 +86,13 @@ class _NetworkInformation:
             ['Bytes Received', self.get_bytes_received()]
         ])
 
+    def get_system_information(self):
+        return {
+            'sent': self.get_bytes_sent(),
+            'received': self.get_bytes_received(),
+            'interfaces': self.get_interface_information()
+        }
+
 
 class _DiskInformation:
     # Disk Information
@@ -124,6 +138,13 @@ class _DiskInformation:
             ['partitions_information', self.get_partition_information()]
         ])
 
+    def get_system_information(self):
+        return {
+            'read': self.get_total_read(),
+            'write': self.get_total_write(),
+            'partitions': self.get_partition_information()
+        }
+
 
 class _MemoryInformation:
     def __init__(self):
@@ -149,6 +170,18 @@ class _MemoryInformation:
 
     def get_percentage_swap(self):
         return self.swap.percent
+
+    def get_system_information(self):
+        return {
+            'totalMemory': self.total_svmem,
+            'availableMemory': self.get_available_memory(),
+            'usedMemory': self.get_used_memory(),
+            'percentageMemory': self.get_percentage_memory(),
+            'totalSwap': self.total_swap,
+            'availableSwap': self.get_available_swap(),
+            'usedSwap': self.get_used_swap(),
+            'percentageSwap': self.get_percentage_swap()
+        }
 
     def __repr__(self):
         return tabulate([
@@ -209,8 +242,16 @@ class _BootInformation:
         self.boot_time_timestamp = psutil.boot_time()
         self.boot_time_datetime = datetime.fromtimestamp(self.boot_time_timestamp)
 
+    def get_system_information(self):
+        return {
+            'bootTime': self._get_timestamp()
+        }
+
+    def _get_timestamp(self):
+        return self.boot_time_datetime.strftime("%d/%m/%Y %H:%M:%S")
+
     def __repr__(self):
-        return f"Boot Time: " + self.boot_time_datetime.strftime("%d/%m/%Y %H:%M:%S")
+        return f"Boot Time: " + self._get_timestamp()
 
 
 class _SystemInformation:
@@ -255,12 +296,12 @@ class SystemMonitor:
 
     def __init__(self):
         self.system_informant = _SystemInformation()
-        self.boot_informant = _BootInformation()
         self.cpu_informant = _CPUInformation()
         self.memory_informant = _MemoryInformation()
         self.disk_informant = _DiskInformation()
         self.network_informant = _NetworkInformation()
         self.thermal_informant = _ThermalInformation()
+        self.boot_informant = _BootInformation()
 
     def __repr__(self):
         return self.system_informant.__repr__() + '\n' + \
@@ -271,6 +312,18 @@ class SystemMonitor:
                self.network_informant.__repr__() + '\n' + \
                self.thermal_informant.__repr__()
 
+    def get_system_information(self):
+        return {
+            'systemInformation': self.system_informant.get_system_information(),
+            'cpu': self.cpu_informant.get_system_information(),
+            'memory': self.memory_informant.get_system_information(),
+            'disk': self.disk_informant.get_system_information(),
+            'network': self.network_informant.get_system_information(),
+            'thermal': self.thermal_informant.get_system_information(),
+            'boot': self.boot_informant.get_system_information()
+        }
+
 
 if __name__ == "__main__":
-    print(SystemMonitor())
+    print(json.dumps(SystemMonitor().get_system_information(), indent=4))
+    # print(SystemMonitor().disk_informant.get_partition_information())
