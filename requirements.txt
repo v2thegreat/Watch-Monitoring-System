@@ -1,0 +1,5 @@
+tabulate
+psutil
+pymongo
+flask
+yaml
