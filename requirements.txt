@@ -2,4 +2,4 @@ tabulate
 psutil
 pymongo
 flask
-yaml
+PyYAML
