@@ -72,12 +72,12 @@ class _NetworkInformation:
     @classmethod
     def get_bytes_sent(cls):
         net_io = psutil.net_io_counters()
-        return get_size(net_io.bytes_sent)
+        return net_io.bytes_sent
 
     @classmethod
     def get_bytes_received(cls):
         net_io = psutil.net_io_counters()
-        return get_size(net_io.bytes_recv)
+        return net_io.bytes_recv
 
     def __repr__(self):
         return tabulate([
@@ -102,12 +102,12 @@ class _DiskInformation:
     @classmethod
     def get_total_read(cls):
         disk_io = psutil.disk_io_counters()
-        return get_size(disk_io.read_bytes)
+        return disk_io.read_bytes
 
     @classmethod
     def get_total_write(cls):
         disk_io = psutil.disk_io_counters()
-        return get_size(disk_io.write_bytes)
+        return disk_io.write_bytes
 
     def get_partition_information(self):
         partitions = []
