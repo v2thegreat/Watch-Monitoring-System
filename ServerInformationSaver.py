@@ -11,7 +11,9 @@ systemMonitoring = SystemMonitor()
 
 if __name__ == '__main__':
     while True:
+        current_datetime = datetime.now()
         sys_info = systemMonitoring.get_system_information()
-        sys_info['datetime'] = datetime.now()
+        sys_info['datetime'] = current_datetime
         db.insert_one(sys_info)
+        print(f'Saved data at: {current_datetime}')
         sleep(10)
