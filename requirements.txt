@@ -3,3 +3,4 @@ psutil
 pymongo
 flask
 PyYAML
+pandas
