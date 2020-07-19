@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import pandas as pd
 from pandas import json_normalize
-from flask import Flask
+from flask import Flask, jsonify
 
 from SystemMonitoring import get_size
 from config.config import config_obj
@@ -20,14 +20,14 @@ def get_system_information_minimal():
     disk = json_normalize(data_dataframe['disk'])
     network = json_normalize(data_dataframe['network'])
 
-    return {
+    return jsonify({
         'cpu': cpu.aggregate('mean')['total_core_usage'],
         'memory': memory.aggregate('mean')['percentageMemory'],
         'diskRead': get_size(disk['read'].aggregate('mean')),
         'diskWrite': get_size(disk['write'].aggregate('mean')),
         'networkSent': get_size(network['sent'].aggregate('mean')),
         'networkReceived': get_size(network['received'].aggregate('mean'))
-    }
+    })
 
 
 if __name__ == "__main__":
