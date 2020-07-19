@@ -1,11 +1,6 @@
 monitoringServer:
-  host: 192.168.1.6
   port: 5555
 
-workerServers:
-  server1:
-    host: 192.168.1.2
-    port: 9636
-  server2:
-    host: 192.168.1.11
-    port: 9636
+database:
+  host: 192.168.1.11
+  port: 27017
