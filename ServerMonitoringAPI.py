@@ -10,10 +10,14 @@ app = Flask(__name__)
 client = MongoClient(f'mongodb://{config_obj["database"]["host"]}:{config_obj["database"]["port"]}')
 db = client.SystemMonitoringDatabase.SystemMonitoringDatabase
 
+sort = list({'datetime_index': -1}.items())
+limit = 10
+
 
 @app.route('/minimal')
 def get_system_information_minimal():
-    data = [x for x in db.find()]
+    count = db.find(sort=sort, limit = 100).distinct('systemInformation')
+    data = [x for x in db.find(sort=sort, limit = limit * len(count))]
     data_dataframe = pd.DataFrame(data)
     cpu = json_normalize(data_dataframe['cpu'])
     memory = json_normalize(data_dataframe['memory'])
