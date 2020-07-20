@@ -10,7 +10,7 @@ app = Flask(__name__)
 client = MongoClient(f'mongodb://{config_obj["database"]["host"]}:{config_obj["database"]["port"]}')
 db = client.SystemMonitoringDatabase.SystemMonitoringDatabase
 
-sort = list({'datetime_index': -1}.items())
+sort = list({'datetime': -1}.items())
 limit = 10
 
 
