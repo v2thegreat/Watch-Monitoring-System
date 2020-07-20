@@ -9,4 +9,7 @@
     <string name="refresh_button_text">Refresh</string>
     <string name="memory_title_text">Memory</string>
     <string name="cpu_title_text">CPU</string>
+    <string name="disk_read_title">Disk Read: {}</string>
+    <string name="disk_write_title">Disk Write: {}</string>
+    <string name="refreshed_at_title">Refreshed at: {}</string>
 </resources>

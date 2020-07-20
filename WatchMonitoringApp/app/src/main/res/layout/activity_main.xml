@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/toastButton"
-        android:layout_width="97dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/SystemInformation"
         android:layout_alignEnd="@+id/SystemInformation"
@@ -33,6 +33,7 @@
         android:layout_marginTop="145dp"
         android:layout_marginEnd="12dp"
         android:text="@string/refresh_button_text"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
     <TextView
@@ -43,16 +44,17 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="110dp"
         android:text="@string/memory_title_text"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
     <ProgressBar
         android:id="@+id/progressBarMemory"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="84dp"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,18 +64,58 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="142dp"
         android:text="@string/cpu_title_text"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
     <ProgressBar
         android:id="@+id/progressBarCPU"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="84dp"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="24dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="129dp" />
+
+    <TextView
+        android:id="@+id/txtViewDiskRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="142dp"
+        android:text="@string/disk_read_title"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtViewDiskWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="110dp"
+        android:text="@string/disk_write_title"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtviewLastRefreshed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/toastButton"
+        android:layout_alignEnd="@+id/toastButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="64dp"
+        android:text="@string/refreshed_at_title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
 
 </RelativeLayout>
