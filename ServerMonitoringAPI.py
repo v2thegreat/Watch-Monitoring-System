@@ -16,8 +16,8 @@ limit = 10
 
 @app.route('/minimal')
 def get_system_information_minimal():
-    count = db.find(sort=sort, limit = 100).distinct('systemInformation')
-    data = [x for x in db.find(sort=sort, limit = limit * len(count))]
+    count = len(db.find(sort=sort, limit = 100).distinct('systemInformation'))
+    data = [x for x in db.find(sort=sort, limit = limit * count)]
     data_dataframe = pd.DataFrame(data)
     cpu = json_normalize(data_dataframe['cpu'])
     memory = json_normalize(data_dataframe['memory'])
