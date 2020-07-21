@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/SystemInformation"
+        android:id="@+id/txtViewServerConnections"
         android:layout_width="126dp"
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
@@ -27,8 +27,8 @@
         android:id="@+id/toastButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/SystemInformation"
-        android:layout_alignEnd="@+id/SystemInformation"
+        android:layout_alignStart="@+id/txtViewServerConnections"
+        android:layout_alignEnd="@+id/txtViewServerConnections"
         android:layout_marginStart="12dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="12dp"
@@ -37,6 +37,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/txtViewMemoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -57,6 +58,7 @@
         android:layout_marginTop="100dp" />
 
     <TextView
+        android:id="@+id/txtViewCPUTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -84,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="142dp"
         android:text="@string/disk_read_title"
         android:textAlignment="textStart"
@@ -97,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="110dp"
         android:text="@string/disk_write_title"
         android:textAlignment="textStart"

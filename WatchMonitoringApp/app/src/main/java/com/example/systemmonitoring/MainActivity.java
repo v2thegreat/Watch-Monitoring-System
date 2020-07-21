@@ -24,7 +24,8 @@ import java.util.Calendar;
 public class MainActivity extends WearableActivity {
 
     private ProgressBar progressBarCPU, progressBarMemory;
-    private TextView txtViewDiskRead, txtViewDiskWrite, txtviewLastRefreshed;
+    private TextView txtViewDiskRead, txtViewDiskWrite, txtviewLastRefreshed, txtViewCPUTitle,
+            txtViewMemoryTitle, txtViewServerConnections;
     private int i = 0;
 
     @Override
@@ -38,6 +39,9 @@ public class MainActivity extends WearableActivity {
         txtViewDiskRead = findViewById(R.id.txtViewDiskRead);
         txtViewDiskWrite = findViewById(R.id.txtViewDiskWrite);
         txtviewLastRefreshed = findViewById(R.id.txtviewLastRefreshed);
+        txtViewCPUTitle = findViewById(R.id.txtViewCPUTitle);
+        txtViewMemoryTitle = findViewById(R.id.txtViewMemoryTitle);
+        txtViewServerConnections = findViewById(R.id.txtViewServerConnections);
 
         getServerInformation();
         refreshButton.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +70,22 @@ public class MainActivity extends WearableActivity {
                     int cpu_usage_percentage = jsonObject.getInt("cpu");
                     int memory_usage_percentage = jsonObject.getInt("memory");
 
+                    int serverCount = jsonObject.getInt("serverCount");
+
                     String disk_read = jsonObject.getString("diskRead");
                     String disk_write = jsonObject.getString("diskWrite");
                     String new_read_string = getResources().getString(R.string.disk_read_title).replace("{}", disk_read);
                     String new_write_string = getResources().getString(R.string.disk_write_title).replace("{}", disk_write);
-
+                    String new_cpu_string = getResources().getString(R.string.cpu_title_text).replace("{}", Integer.toString(cpu_usage_percentage));
+                    String new_memory_string = getResources().getString(R.string.memory_title_text).replace("{}", Integer.toString(memory_usage_percentage));
+                    String new_server_count = getResources().getString(R.string.system_information_title).replace("{}", Integer.toString(serverCount));
                     progressBarCPU.setProgress(cpu_usage_percentage, true);
                     progressBarMemory.setProgress(memory_usage_percentage, true);
                     txtViewDiskRead.setText(new_read_string);
                     txtViewDiskWrite.setText(new_write_string);
+                    txtViewCPUTitle.setText(new_cpu_string);
+                    txtViewMemoryTitle.setText(new_memory_string);
+                    txtViewServerConnections.setText(new_server_count);
 
                     txtviewLastRefreshed.setText(Calendar.getInstance().getTime().toString());
                 } catch (JSONException e) {
