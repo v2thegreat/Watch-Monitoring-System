@@ -25,6 +25,7 @@ def get_system_information_minimal():
     network = json_normalize(data_dataframe['network'])
 
     return jsonify({
+        'serverCount': count,
         'cpu': cpu.aggregate('mean')['total_core_usage'],
         'memory': memory.aggregate('mean')['percentageMemory'],
         'diskRead': get_size(disk['read'].aggregate('mean')),
